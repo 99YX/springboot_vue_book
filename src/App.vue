@@ -7,16 +7,16 @@
       <img src="./assets/logo.png" style="height: 40px;width: 40px ;position: relative;left: 20px;top: 10px">
              <!--   图片   -->
       <span style="margin-left: 35px;width: 40px;font-size: 25px">图书管理系统</span>
-      <el-dropdown style="margin-left: 1000px">
+<!--      <el-dropdown style="margin-left: 1000px">
     <span class="el-dropdown-link">
-      张三<i class="el-icon-arrow-down el-icon--right"></i>
+      张三<i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>
     </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>个人信息</el-dropdown-item>
               <el-dropdown-item>退出系统</el-dropdown-item>
 
             </el-dropdown-menu>
-          </el-dropdown>
+          </el-dropdown>-->
 
 
 
@@ -37,11 +37,11 @@
             <template slot="title">
 
               <i class="el-icon-s-check
-">关于页面</i>
+">会员管理</i>
 
             </template>
-            <el-menu-item index="/hellworld">选项1</el-menu-item>
-
+            <el-menu-item index="addUser">会员添加</el-menu-item>
+            <el-menu-item index="user">会员列表</el-menu-item>
 
           </el-submenu>
         </el-menu>
