@@ -26,7 +26,7 @@
 
       <div style="width: 200px;margin-right: 2px;background-color: white">
 <!--   :default-openeds="['1']" 默认打开菜单     -->
-        <el-menu :default-active="$route.path" :default-openeds="['1']" router class="el-menu-demo" >
+        <el-menu :default-active="$route.path.substring(1)" :default-openeds="['1']" router class="el-menu-demo" >
               <!--   index="/"=home页面       -->
           <el-menu-item index="/">
             <i class="el-icon-s-home
@@ -40,8 +40,9 @@
 ">会员管理</i>
 
             </template>
-            <el-menu-item index="addUser">会员添加</el-menu-item>
-            <el-menu-item index="user">会员列表</el-menu-item>
+            <el-menu-item index="/editUser">会员修改</el-menu-item>
+            <el-menu-item index="/addUser">会员添加</el-menu-item>
+            <el-menu-item index="/user">会员列表</el-menu-item>
 
           </el-submenu>
         </el-menu>

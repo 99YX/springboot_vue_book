@@ -1,6 +1,6 @@
 <template>
   <div class="home " style="width: 100%;">
-    <div>
+    <div >
       <el-input v-model="name" style="width: 240px" placeholder="请输入名称" >
 
       </el-input>
@@ -16,38 +16,70 @@
     </div>
     <el-table
         :data="tableData"
-        style="width: 100%"
+        style="width: 100%;text-align: center"
         :row-class-name="tableRowClassName"
+
     >
+      <el-table-column
+          prop="id"
+          label="序号"
+          width="100"
+          sortable>
+      </el-table-column>
       <el-table-column
           prop="createtime"
           label="日期"
-          width="180"
+          width="100"
           sortable>
       </el-table-column>
       <el-table-column
           prop="name"
           label="名称"
-          width="180">
+          width="100">
+      </el-table-column>
+      <el-table-column
+          prop="username"
+          label="卡号"
+          width="170">
       </el-table-column>
       <el-table-column
           prop="age"
           label="年龄"
-          width="180">
+          width="140">
       </el-table-column>
       <el-table-column
           prop="sex"
           label="性别"
-          width="180">
+          width="100">
       </el-table-column>
       <el-table-column
           prop="address"
-          label="地址">
+          label="地址"
+          width="100"
+
+      >
       </el-table-column>
       <el-table-column
           prop="phone"
-          label="联系方式">
+          label="联系方式"
+          width="100"
+      >
       </el-table-column>
+      <el-table-column
+          label="操作"
+          width="200"
+
+      >
+        <template
+          v-slot="scope"
+        >
+            <!--  scope.row获取行数据        -->
+          <el-button type="primary" @click="$router.push('/editUser?id='+scope.row.id)">修改</el-button>
+          <el-button type="primary">删除</el-button>
+        </template>
+      </el-table-column>
+
+
     </el-table>
     <!--    分页-->
     <div style="margin-top: 20px">
