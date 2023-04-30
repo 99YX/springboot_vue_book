@@ -7,13 +7,14 @@
         <el-input v-model="form.name" placeholder="请输入姓名"></el-input>
       </el-form-item>
       <el-form-item label="卡号">
-        <el-input v-model="form.username" placeholder="请输入卡号"></el-input>
+        <el-input v-model="form.username" disabled></el-input>
       </el-form-item>
       <el-form-item label="年龄">
         <el-input v-model="form.age" placeholder="请输入年龄"></el-input>
       </el-form-item>
       <el-form-item label="性别">
-        <el-input v-model="form.sex" placeholder="请输入年龄"></el-input>
+        <el-radio v-model="form.sex" label="男">男</el-radio>
+        <el-radio v-model="form.sex" label="女">女</el-radio>
       </el-form-item>
       <el-form-item label="联系方式">
         <el-input v-model="form.phone" placeholder="请输入联系方式"></el-input>
@@ -21,10 +22,11 @@
       <el-form-item label="地址">
         <el-input v-model="form.address" placeholder="请输入地址"></el-input>
       </el-form-item>
+
     </el-form>
     <div >
       <el-button type="primary" @click="update">提交</el-button>
-      <el-button type="danger">取消</el-button>
+      <el-button type="danger" @click="$router.push('/user')">取消</el-button>
     </div>
   </div>
 </template>
@@ -36,6 +38,7 @@ export default {
   data(){
     return{
       form:{
+        sex:'男'
 
       }
     }
@@ -44,7 +47,7 @@ export default {
 
    const id = this.$route.query.id;/*获取请求id*/
     console.log("this.$route.query.id==>"+id)
-    request.get("/user/"+id).then(res=>
+    request.put("/user/"+id).then(res=>
         {
           console.log("我是更新接口"+res.data.id)
           this.form=res.data

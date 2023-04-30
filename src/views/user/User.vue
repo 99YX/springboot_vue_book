@@ -13,6 +13,12 @@
       <el-button style="margin-left: 5px" type="danger" @click="load" >
         <i class="el-icon-delete" @click="reset">重置</i>
       </el-button>
+      <el-button style="margin-left: 5px" type="primary" @click="load" >
+        <i class="el-icon-search">导入</i>
+      </el-button>
+      <el-button style="margin-left: 5px" type="danger" @click="load" >
+        <i class="el-icon-delete" @click="reset">导出</i>
+      </el-button>
     </div>
     <el-table
         :data="tableData"
@@ -23,7 +29,7 @@
       <el-table-column
           prop="id"
           label="序号"
-          width="100"
+          width="50"
           sortable>
       </el-table-column>
       <el-table-column
@@ -45,7 +51,7 @@
       <el-table-column
           prop="age"
           label="年龄"
-          width="140">
+          width="70">
       </el-table-column>
       <el-table-column
           prop="sex"
@@ -55,16 +61,30 @@
       <el-table-column
           prop="address"
           label="地址"
-          width="100"
+          width="80"
 
       >
       </el-table-column>
       <el-table-column
           prop="phone"
           label="联系方式"
-          width="100"
+          width="80"
       >
       </el-table-column>
+
+      <el-table-column
+          prop="createtime"
+          label="创建时间"
+          width="80"
+      >
+      </el-table-column>
+      <el-table-column
+          prop="updatetime"
+          label="更新时间"
+          width="80"
+      >
+      </el-table-column>
+
       <el-table-column
           label="操作"
           width="200"
@@ -75,7 +95,16 @@
         >
             <!--  scope.row获取行数据        -->
           <el-button type="primary" @click="$router.push('/editUser?id='+scope.row.id)">修改</el-button>
-          <el-button type="primary">删除</el-button>
+
+          <template>
+            <el-popconfirm
+                title="这是一段内容确定删除吗？"
+                @confirm="del(scope.row.id)"
+            >
+<!--    @confirm点击事件          -->
+              <el-button slot="reference" type="danger">删除</el-button>
+            </el-popconfirm>
+          </template>
         </template>
       </el-table-column>
 
@@ -142,6 +171,24 @@ export default {
       this.pageNum = pageNum
       this.load()
     },
+     /*删除*/
+    del(id)
+    {
+      request.delete("/user/delete/"+id).then(res=>{
+        /*判断状态码*/
+        if(res.code=='200')
+        {
+          this.$message.success("删除成功")
+        }
+        else {
+
+          this.$notify.error(res.msg)
+
+        }
+        this.load()
+      })
+
+    },
 
 
     load(){
@@ -169,6 +216,7 @@ export default {
         console.log(res.data.list)
         this.tableData=res.data.list
         this.total=res.data.total
+
 
       })
 
